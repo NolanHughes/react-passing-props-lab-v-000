@@ -10,7 +10,7 @@ const Filter = props =>
 
 Filter.defaultProps = {
   filters: [],
-  handleChange: null
+  handleChange: () => {}
 }
 
 export default Filter;

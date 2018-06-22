@@ -13,7 +13,7 @@ FruitBasket.defaultProps = {
   fruit: [],
   filters: [],
   currentFilter: null,
-  updateFilterCallback: null
+  updateFilterCallback: () => {}
 }
 
 export default FruitBasket;
