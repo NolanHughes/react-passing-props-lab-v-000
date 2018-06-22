@@ -1,29 +1,16 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class FilteredFruitList extends Component {
-  constructor(props) {
-    super(props);
+const FilteredFruitList = props =>
+  <ul className="fruit-list">
+    {props.filter && props.filter !== 'all' ? props.fruit.filter(f => f.fruit_type === props.filter).map((fruit, index) => <li key={index}>{fruit.char}</li>) : props.fruit.map((fruit, index) => <li key={index}>{fruit.char}</li>)}
+  </ul>
 
-    this.state = {
-      items: []
-    };
-  }
-
-  componentDidMount() {
-    fetch('/api/fruit')
-      .then(response => response.json())
-      .then(items => this.setState({ items }));
-  }
-
-  render() {
-    const list = !this.props.filter || this.props.filter === 'all' ? this.state.items : this.state.items.filter(i => i.fruit_type === this.props.filter);
-
-    return (
-      <ul className="fruit-list">
-        {list.map((item, index) => <li key={index}>{item.char}</li>)}
-      </ul>
-    );
-  }
+FilteredFruitList.defaultProps = {
+  fruit: [],
+  filter: null
 }
 
 export default FilteredFruitList;
+
+//This goes in the fruit-list ul and replace everything in there currently if the test would allow it. const fruitList has to be uncommented to work
+//{props.fruit.map((fruit, index) => <li key={index}>{fruit.char}</li>)}
